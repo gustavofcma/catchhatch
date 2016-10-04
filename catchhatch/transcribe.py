@@ -46,7 +46,6 @@ def turn_to_pandas_df(lines):
             modes.append("hatched")
             i += 3
     df = pd.DataFrame({"name": pokemons, "CP": cps, "datetime": times, "mode": modes})
-    print(df)
     return(df)
 
 def main(dirname):
@@ -57,7 +56,10 @@ def main(dirname):
         proc = subprocess.run(shlex.split("tesseract {} stdout".format(fname)), stdout=subprocess.PIPE)
         output.append(proc.stdout.decode('utf-8'))
     df = turn_to_pandas_df(output)
-    return df
+    df["datetime"] = pd.to_datetime(df["datetime"])
+    df_sorted = df.drop_duplicates().sort_values(by="datetime")
+    print(df_sorted)
+    return df_sorted
 
 
 if __name__ == "__main__":

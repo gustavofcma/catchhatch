@@ -13,3 +13,12 @@ conda create -n catch python=3 pandas
 source activate catch
 ```
 
+## Example
+
+Run the example code from the catchhatch base folder as
+
+```bash
+python catchhatch/transcribe.py examples
+```
+
+The only argument is the folder containing the screenshots!
