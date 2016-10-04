@@ -56,8 +56,8 @@ def main(dirname):
     for fname in img_files:
         proc = subprocess.run(shlex.split("tesseract {} stdout".format(fname)), stdout=subprocess.PIPE)
         output.append(proc.stdout.decode('utf-8'))
-    print(output, "!x!@#")
     df = turn_to_pandas_df(output)
+    return df
 
 
 if __name__ == "__main__":
